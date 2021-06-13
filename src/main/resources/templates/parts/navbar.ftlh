@@ -23,6 +23,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="/profile">Профиль</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/api/items">API</a>
+            </li>
 
         </ul>
 

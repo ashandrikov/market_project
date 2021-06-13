@@ -26,7 +26,6 @@ public class User
     private Set<Role> roles;
 
 
-
     public boolean isAdmin() {
         return roles.contains(Role.ADMIN);
     }

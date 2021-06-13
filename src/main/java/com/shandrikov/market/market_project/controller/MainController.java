@@ -32,6 +32,22 @@ public class MainController {
         return "main";
     }
 
+    @GetMapping("/cart")
+    public String cart() {
+        return "cart";
+    }
+
+    @GetMapping("/profile")
+    public String profile() {
+        return "profile";
+    }
+
+    @GetMapping("/orders")
+    public String orders() {
+        return "orders";
+    }
+
+
     @GetMapping("/")
     public String main2() {
         return "main";
@@ -56,13 +72,14 @@ public class MainController {
     @PostMapping("/items")
     public String add(
             @AuthenticationPrincipal User user,
-            @RequestParam int category_id,
+//            @RequestParam int category_id,
+            @RequestParam Category category,
             @RequestParam String name,
             @RequestParam String description,
             @RequestParam int price,
             Map<String, Object> model,
             @RequestParam("file") MultipartFile file) throws IOException {
-        Item item = new Item(category_id, name, description, price, user);
+        Item item = new Item(category, name, description, price, user);
 
         if (file != null && !file.getOriginalFilename().isEmpty()){
             File uploadDir = new File(uploadPath);
