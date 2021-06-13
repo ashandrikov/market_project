@@ -13,7 +13,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Map;
 import java.util.UUID;
 
@@ -72,29 +76,57 @@ public class MainController {
     @PostMapping("/items")
     public String add(
             @AuthenticationPrincipal User user,
-//            @RequestParam int category_id,
-            @RequestParam Category category,
+            @RequestParam int category_id,
+//            @RequestParam Category category,
             @RequestParam String name,
             @RequestParam String description,
             @RequestParam int price,
-            Map<String, Object> model,
-            @RequestParam("file") MultipartFile file) throws IOException {
-        Item item = new Item(category, name, description, price, user);
+//            @RequestParam("file") MultipartFile file,
+            @RequestParam("image") MultipartFile file2,
+            Map<String, Object> model
 
-        if (file != null && !file.getOriginalFilename().isEmpty()){
-            File uploadDir = new File(uploadPath);
+    ) throws IOException {
 
-            if (!uploadDir.exists()) {
-                uploadDir.mkdir();
-            }
+        Item item = new Item();
+        item.setCategory_id(category_id);
+        item.setName(name);
+        item.setDescription(description);
+        item.setPrice(price);
 
-            String uuidFile = UUID.randomUUID().toString();
-            String resultFilename = uuidFile + "." + file.getOriginalFilename();
+        if (file2 != null && !file2.getOriginalFilename().isEmpty()) {
 
-            file.transferTo(new File(uploadPath + "/" + resultFilename));
+//            File uploadDir = new File(uploadPath);
+//            String uuidFile = UUID.randomUUID().toString();
+//            String resultFilename = uuidFile + "." + file2.getOriginalFilename();
+//            file2.transferTo(new File(uploadPath + "/" + resultFilename));
 
-            item.setFilename(resultFilename);
+            //Попытка упростить, но где-то ошибка
+
+            byte[] bytes = file2.getBytes();
+            Path path = Paths.get(uploadPath + "/" + file2.getOriginalFilename());
+            Files.write(path, bytes);
+
+//            File file = new File(resultFilename);
+//            byte[] picInBytes = new byte[(int) file.length()];
+//            FileInputStream fileInputStream = new FileInputStream(file);
+//            fileInputStream.read(picInBytes);
+//            fileInputStream.close();
+            item.setImage(bytes);
         }
+
+//        Прежний сложный но работающий вариант
+
+//        Item item = new Item(category, name, description, price, file, user);
+//        if (file != null && !file.getOriginalFilename().isEmpty()){
+//            File uploadDir = new File(uploadPath);
+//            if (!uploadDir.exists()) {
+//                uploadDir.mkdir();
+//            }
+//            String uuidFile = UUID.randomUUID().toString();
+//            String resultFilename = uuidFile + "." + file.getOriginalFilename();
+//            file.transferTo(new File(uploadPath + "/" + resultFilename));
+//            item.setFilename(resultFilename);
+//        }
 
         itemService.saveItem(item);
 

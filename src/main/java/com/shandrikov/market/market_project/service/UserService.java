@@ -38,12 +38,13 @@ public class UserService implements UserDetailsService {
                 .collect(Collectors.toSet());
 
         user.getRoles().clear();
+        user.getRoles().add(Role.valueOf("USER"));
 
-        for (String key : form.keySet()) {
-            if (roles.contains(key)) {
-                user.getRoles().add(Role.valueOf(key));
-            }
-        }
+//        for (String key : form.keySet()) {
+//            if (roles.contains(key)) {
+//                user.getRoles().add(Role.valueOf(key));
+//            }
+//        }
 
         userRepo.save(user);
     }
