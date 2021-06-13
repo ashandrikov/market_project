@@ -31,8 +31,8 @@
                     <input type="text" class="form-control" name="name" placeholder="Наименование">
                 </div>
                 <div class="form-group">
-<#--                    <input type="text" class="form-control" name="category_id" placeholder="Категория"/>-->
-                    <input type="text" class="form-control" name="category.id" placeholder="Категория"/>
+                    <input type="text" class="form-control" name="category_id" placeholder="Категория"/>
+<#--                    <input type="text" class="form-control" name="category.id" placeholder="Категория"/>-->
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" name="description" placeholder="Описание">
@@ -65,8 +65,8 @@
         <div class="row mt-3">
             <div class="col">
                 <h5>${item.name}</h5>
-<#--                <span>${item.category_id}</span>-->
-                <span>${item.category.name}</span>
+                <span>${item.category_id}</span>
+<#--                <span>${item.category.name}</span>-->
                 <span>${item.description}</span>
                 <div class="card-footer text-muted">
                     ${item.price}

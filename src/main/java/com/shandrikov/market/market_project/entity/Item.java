@@ -10,12 +10,12 @@ public class Item {
     @Column(name = "id")
     private int id;
 
-//    @Column(name = "category_id")
-//    private int category_id;
+    @Column(name = "category_id")
+    private int category_id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "fk_id")
-    private Category category;
+//    @ManyToOne(fetch = FetchType.EAGER)
+////    @JoinColumn(name = "fk_id")
+//    private Category category;
 
     @Column(name = "name")
     private String name;
@@ -33,21 +33,21 @@ public class Item {
     @Column(name = "filename")
     private String filename;
 
-//    public Item(int category_id, String name, String description, int price, User user) {
-//        this.category_id = category_id;
-//        this.name = name;
-//        this.description = description;
-//        this.price = price;
-//        this.author = user;
-//    }
-
-    public Item(Category category, String name, String description, int price, User user) {
-        this.category = category;
+    public Item(int category_id, String name, String description, int price, User user) {
+        this.category_id = category_id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.author = user;
     }
+
+//    public Item(Category category, String name, String description, int price, User user) {
+//        this.category = category;
+//        this.name = name;
+//        this.description = description;
+//        this.price = price;
+//        this.author = user;
+//    }
 
     public Item() {
     }
@@ -105,13 +105,20 @@ public class Item {
         this.price = price;
     }
 
-    public Category getCategory() {
-        return category;
+//    public Category getCategory() {
+//        return category;
+//    }
+//
+//    public void setCategory(Category category) {
+//        this.category = category;
+//    }
+
+
+    public int getCategory_id() {
+        return category_id;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategory_id(int category_id) {
+        this.category_id = category_id;
     }
-
-
 }
