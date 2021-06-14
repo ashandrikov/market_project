@@ -11,10 +11,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 @Controller
@@ -54,14 +62,17 @@ public class MainController {
     }
 
     @GetMapping("/items")
-    public String main(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
+    public String main(
+            @RequestParam(required = false, defaultValue = "") String filter,
+            HttpServletResponse response,
+            Model model) throws IOException {
         Iterable<Item> items;
 
         if (filter != null && !filter.isEmpty()) {
-                items = itemService.findByName(filter);
-            } else {
-                items = itemService.getAllItems();
-            }
+            items = itemService.findByName(filter);
+        } else {
+            items = itemService.getAllItems();
+        }
 
         model.addAttribute("items", items);
         model.addAttribute("filter", filter);
@@ -77,26 +88,36 @@ public class MainController {
             @RequestParam String name,
             @RequestParam String description,
             @RequestParam int price,
-            Map<String, Object> model,
-            @RequestParam("file") MultipartFile file) throws IOException {
-        Item item = new Item(category_id, name, description, price, user);
+            @RequestParam("image") MultipartFile file,
+            RedirectAttributes ra,
+            Map<String, Object> model
 
-        if (file != null && !file.getOriginalFilename().isEmpty()){
+    ) throws IOException {
+
+        Item item = new Item();
+        item.setCategory_id(category_id);
+        item.setName(name);
+        item.setDescription(description);
+        item.setPrice(price);
+        item.setAuthor(user);
+
+        if (file != null && !file.getOriginalFilename().isEmpty()) {
+            item.setImage(file.getBytes());
+        }
+
+        if (file != null && !file.getOriginalFilename().isEmpty()) {
             File uploadDir = new File(uploadPath);
-
             if (!uploadDir.exists()) {
                 uploadDir.mkdir();
             }
-
             String uuidFile = UUID.randomUUID().toString();
             String resultFilename = uuidFile + "." + file.getOriginalFilename();
-
             file.transferTo(new File(uploadPath + "/" + resultFilename));
 
-            item.setFilename(resultFilename);
         }
 
         itemService.saveItem(item);
+        ra.addFlashAttribute("message", "The file has been uploaded successfully!");
 
         Iterable<Item> items = itemService.getAllItems();
 

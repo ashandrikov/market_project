@@ -14,10 +14,10 @@ public class Item {
     private int category_id;
 
 //    @ManyToOne(fetch = FetchType.EAGER)
-////    @JoinColumn(name = "fk_id")
+//    @JoinColumn(name = "fk_id")
 //    private Category category;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
 
     @Column(name = "description")
@@ -30,16 +30,12 @@ public class Item {
     @JoinColumn(name = "user_id")
     private User author;
 
-    @Column(name = "filename")
-    private String filename;
+//    @Column(name = "filename")
+//    private String filename;
 
-    public Item(int category_id, String name, String description, int price, User user) {
-        this.category_id = category_id;
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.author = user;
-    }
+    @Lob
+    @Column(name = "image")
+    private byte[] image;
 
 //    public Item(Category category, String name, String description, int price, User user) {
 //        this.category = category;
@@ -64,13 +60,23 @@ public class Item {
         this.author = author;
     }
 
+//    Прежний вариант для img:
 
-    public String getFilename() {
-        return filename;
+//    public String getFilename() {
+//        return filename;
+//    }
+//
+//    public void setFilename(String filename) {
+//        this.filename = filename;
+//    }
+
+
+    public byte[] getImage() {
+        return image;
     }
 
-    public void setFilename(String filename) {
-        this.filename = filename;
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     public String getName() {
