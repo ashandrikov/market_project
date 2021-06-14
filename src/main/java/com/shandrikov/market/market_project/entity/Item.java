@@ -17,7 +17,7 @@ public class Item {
 //    @JoinColumn(name = "fk_id")
 //    private Category category;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
 
     @Column(name = "description")

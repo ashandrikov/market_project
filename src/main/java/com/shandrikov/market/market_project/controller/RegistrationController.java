@@ -2,7 +2,7 @@ package com.shandrikov.market.market_project.controller;
 
 import com.shandrikov.market.market_project.entity.Role;
 import com.shandrikov.market.market_project.entity.User;
-import com.shandrikov.market.market_project.repos.UserRepo;
+import com.shandrikov.market.market_project.repos.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +14,7 @@ import java.util.Map;
 @Controller
 public class RegistrationController {
     @Autowired
-    private UserRepo userRepo;
+    private UserRepository userRepo;
 
     @GetMapping("/registration")
     public String registration() {

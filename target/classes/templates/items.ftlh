@@ -28,7 +28,7 @@
                 <div class="form-group">
                     <input type="text" class="form-control" name="category_id" placeholder="Категория"/>
 
-<#--                    Если в класс Item изменить поле int category_id на Category category,  не работает-->
+<#--                    Разобраться со связью Один-ко-многим-->
 <#--                    <input type="text" class="form-control" name="category.id" placeholder="Категория"/>-->
 
                 </div>
@@ -47,10 +47,14 @@
                 <input type="hidden" name="_csrf" value="${_csrf.token}"/>
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Добавить</button>
+                    <button type="submit" value="Загрузить" class="btn btn-primary" >Добавить</button>
                 </div>
             </form>
         </div>
+    </div>
+
+    <div class="text-success">
+        <h5>${message?ifExists}</h5>
     </div>
 
     <h5>Каталог</h5>
@@ -61,7 +65,7 @@
                 <h5>${item.name}</h5>
                 <span>${item.category_id}</span>
 
-<#--                Если в класс Item изменить поле int category_id на Category category, поле работает корректно-->
+<#--                Заготовка на добавление категории-->
 <#--                <span>${item.category.name}</span>-->
 
                 <span>${item.description}</span>
@@ -78,7 +82,10 @@
 <#--                    <img src="/img/${item.filename}" class="card-img-top" alt="image">-->
 
 <#--                    Не находит изображение. Или здесь надо писать с помощью js?-->
-                        <img src="/img/${item.image}" class="card-img-top" alt="image">
+<#--                        <img src="/img/${item.image}" class="card-img-top" alt="image">-->
+
+<#--                        Заглушка для изображений-->
+                        <img src="uploads/508fbbce-4313-4040-8812-6d0fe317a822.11Df9ws8s-E.jpg" class="card-img-top" alt="image">
 
                     <#else> <span>No image</span>
                     </#if>
@@ -92,6 +99,7 @@
 
 </@c.page>
 
+<#--    Проверка на админа, шаблон-->
 <#--    <#if isAdmin>-->
 <#--    <#else>-->
 <#--    </#if>-->

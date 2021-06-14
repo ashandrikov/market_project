@@ -2,7 +2,7 @@ package com.shandrikov.market.market_project.service;
 
 import com.shandrikov.market.market_project.entity.Role;
 import com.shandrikov.market.market_project.entity.User;
-import com.shandrikov.market.market_project.repos.UserRepo;
+import com.shandrikov.market.market_project.repos.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 public class UserService implements UserDetailsService {
 
     @Autowired
-    private UserRepo userRepo;
+    private UserRepository userRepo;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
