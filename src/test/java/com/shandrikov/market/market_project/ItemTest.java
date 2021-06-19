@@ -15,9 +15,9 @@ import org.springframework.test.annotation.Rollback;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.Base64;
 import java.util.Collections;
 
-//@SpringBootTest
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class ItemTest {
@@ -46,9 +46,14 @@ class ItemTest {
 //        testUser.getRoles().add(Role.ADMIN);
 //                .add(Role.valueOf("USER"));
 
-        byte[] bytes = Files.readAllBytes(file.toPath());
-        item.setImage(bytes);
-        item.setName("test_item");
+//        byte[] bytes = Files.readAllBytes(file.toPath());
+//        item.setImage(bytes);
+
+        byte[] data = Files.readAllBytes(file.toPath());
+        String imageString = Base64.getEncoder().encodeToString(data);
+        item.setImage(imageString);
+
+        item.setName("fgh");
         item.setPrice(1000);
         item.setDescription("description");
         item.setAuthor(testUser);
