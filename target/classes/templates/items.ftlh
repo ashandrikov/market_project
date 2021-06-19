@@ -34,17 +34,10 @@
                 </div>
 
                 <div class="form-group">
-                    <#--                    <input type="number" class="form-control ${(category_idError??)?string('is-invalid', '')}"-->
-                    <#--                           value="<#if item??>${item.category_id}</#if>" name="category_id" placeholder="Категория">-->
-                    <#--                    <#if category_idError??>-->
-                    <#--                        <div class="invalid-feedback">-->
-                    <#--                            ${category_idError}-->
-                    <#--                        </div>-->
-                    <#--                    </#if>-->
 
                     <select name="category" class="form-control" required>
                         <#list categories! as category>
-                            <option value="${category.id}">${category.id}</option>
+                            <option value="${category.id}">${category.name}</option>
                         </#list>
                     </select>
 

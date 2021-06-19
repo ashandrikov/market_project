@@ -3,7 +3,6 @@
 <@c.page>
     <h5>Категории</h5>
 
-
     <table class="table table-bordered">
         <thead class="thead-dark">
         <tr>
