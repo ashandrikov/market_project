@@ -21,69 +21,50 @@
         <div class="form-group mt-3">
             <form method="post" enctype="multipart/form-data">
                 <div class="form-group mt-3">
-                    <#--                    <input type="text" class="form-control ${(nameError??)?string('is-invalid', '')}"-->
-                    <#--                           value="<#if item??>${item.name}</#if>" name="name" placeholder="Наименование">-->
-                    <#--                    <#if nameError??>-->
-                    <#--                        <div class="invalid-feedback">-->
-                    <#--                            ${nameError}-->
-                    <#--                        </div>-->
-                    <#--                    </#if>-->
-
-
-                    <input type="text" class="form-control" name="name" placeholder="Наименование"/>
+                    <input type="text" class="form-control ${(nameError??)?string('is-invalid', '')}"
+                           value="<#if item??>${item.name}</#if>" name="name" placeholder="Наименование">
+                    <#if nameError??>
+                        <div class="invalid-feedback">${nameError}</div>
+                    </#if>
                 </div>
 
                 <div class="form-group">
-
                     <select name="category" class="form-control" required>
                         <#list categories! as category>
                             <option value="${category.id}">${category.name}</option>
                         </#list>
                     </select>
-
-                    <#--                    <input type="number" class="form-control" name="category_id" placeholder="Категория"/>-->
-
                 </div>
 
                 <div class="form-group">
-                    <#--                                        <input type="text" class="form-control ${(descriptionError??)?string('is-invalid', '')}"-->
-                    <#--                                               value="<#if item??>${item.description}</#if>" name="description" placeholder="Описание">-->
-                    <#--                                        <#if descriptionError??>-->
-                    <#--                                            <div class="invalid-feedback">-->
-                    <#--                                                ${descriptionError}-->
-                    <#--                                            </div>-->
-                    <#--                                        </#if>-->
-
-
-                    <input type="text" class="form-control" name="description" placeholder="Описание">
+                    <input type="text" class="form-control ${(descriptionError??)?string('is-invalid', '')}"
+                           value="<#if item??>${item.description}</#if>" name="description" placeholder="Описание">
+                    <#if descriptionError??>
+                        <div class="invalid-feedback">
+                            ${descriptionError}
+                        </div>
+                    </#if>
                 </div>
 
                 <div class="form-group">
-                    <#--                                        <input type="number" class="form-control ${(priceError??)?string('is-invalid', '')}"-->
-                    <#--                                               value="<#if item??>${item.price}</#if>" name="price" placeholder="Цена">-->
-                    <#--                                        <#if priceError??>-->
-                    <#--                                            <div class="invalid-feedback">-->
-                    <#--                                                ${priceError}-->
-                    <#--                                            </div>-->
-                    <#--                                        </#if>-->
-
-                    <input type="number" class="form-control" name="price" placeholder="Цена">
+                    <input type="number" class="form-control ${(priceError??)?string('is-invalid', '')}"
+                           value="<#if item??>${item.price}</#if>" required name="price" placeholder="Цена">
+                    <#if priceError??>
+                        <div class="invalid-feedback">
+                            ${priceError}
+                        </div>
+                    </#if>
                 </div>
+
                 <div class="form-group">
                     <div class="custom-file">
-
-                        <#--                        <input type="file ${(imageError??)?string('is-invalid', '')}"-->
-                        <#--                               value="<#if item??>${item.image}</#if>" name="image" id="customFile">-->
-                        <#--                        <label class="custom-file-label" for="customFile">Выберите файл</label>-->
-                        <#--                        <#if imageError??>-->
-                        <#--                            <div class="invalid-feedback">-->
-                        <#--                                ${imageError}-->
-                        <#--                            </div>-->
-                        <#--                        </#if>-->
-
-
-                        <input type="file" name="image" id="customFile">
+                        <input type="file" class="form-control ${(imageError??)?string('is-invalid', '')}" name="image" id="customFile">
                         <label class="custom-file-label" for="customFile">Выберите файл</label>
+                        <#if imageError??>
+                            <div class="invalid-feedback">
+                                ${imageError}
+                            </div>
+                        </#if>
                     </div>
                 </div>
                 <input type="hidden" name="_csrf" value="${_csrf.token}"/>
@@ -101,7 +82,7 @@
         <div class="row my-5">
             <div class="col">
                 <h5>${item.name}</h5>
-                <div>${"Категория: " + item.category_id.name}</div>
+                <div>${"Категория: " + item.category.name}</div>
                 <div>${"Описание: " + item.description}</div>
                 <div class="card-footer text-muted">
                     ${item.price + " руб."}
