@@ -26,6 +26,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="/api/items">API</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/add">Добавить</a>
+            </li>
 
         </ul>
 

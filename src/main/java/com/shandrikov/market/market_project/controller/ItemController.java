@@ -12,10 +12,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
@@ -26,7 +23,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/")
-public class MainController {
+public class ItemController {
 
     @Value("${upload.path}")
     private String uploadPath;
@@ -63,11 +60,42 @@ public class MainController {
         return "main";
     }
 
+    @GetMapping("/items/new")
+    public String showItemNewForm(Model model) {
+
+        List<Category> categories = categoryRepository.findAll();
+        model.addAttribute("categories", categories);
+        return "item_form";
+    }
+
+    @GetMapping("/add")
+    public String add() {
+
+        return "additemcategory";
+    }
+
+    @GetMapping("/items/edit/{id}")
+    public String showEditItemForm(@PathVariable("id") Integer id, Model model) {
+        Item item = itemService.getItem(id);
+        model.addAttribute("item", item);
+
+        List<Category> categories = categoryRepository.findAll();
+        model.addAttribute("categories", categories);
+        return "item_form";
+    }
+
+    @GetMapping("/items/delete/{id}")
+    public String deleteItem(@PathVariable("id") Integer id, Model model) {
+
+        itemService.deleteItem(id);
+        return "redirect:/items";
+    }
+
     @GetMapping("/items")
     public String initItems(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
 
         Iterable<Item> items = (filter == null || filter.isEmpty() ?
-                itemService.getAllItems(): itemService.findByName(filter));
+                itemService.getAllItems() : itemService.findByName(filter));
         model.addAttribute("items", items);
         model.addAttribute("filter", filter);
 
@@ -77,18 +105,23 @@ public class MainController {
         return "items";
     }
 
-    @PostMapping("/items")
+    @PostMapping("/items/save")
     public String add(@AuthenticationPrincipal User user, @Valid ItemInputParams formParams,
                       BindingResult bindingResult, Model model) throws IOException {
 
-        if (bindingResult.hasErrors()){
+
+        if (bindingResult.hasErrors()) {
             Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
             model.mergeAttributes(errorsMap);
             model.addAttribute("item", formParams);
-            return initItems(null, model);
+
+            List<Category> categories = categoryRepository.findAll();
+            model.addAttribute("categories", categories);
+            return "item_form";
         }
 
-        Item item = new Item();
+        Item item = itemService.getItem(formParams.getId());
+
         item.setName(formParams.getName());
         item.setCategory(formParams.getCategory());
         item.setDescription(formParams.getDescription());
@@ -106,7 +139,7 @@ public class MainController {
         Iterable<Item> items = itemService.getAllItems();
 
         model.addAttribute("items", items);
-        return initItems(null, model);
+        return "items";
     }
 
 }

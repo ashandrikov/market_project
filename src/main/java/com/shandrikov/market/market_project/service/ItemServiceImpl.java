@@ -30,6 +30,8 @@ public class ItemServiceImpl implements ItemService {
         Optional<Item>optional = itemRepository.findById(id);
         if (optional.isPresent()){
             item = optional.get();
+        } else {
+            item = new Item();
         }
         return item;
     }

@@ -12,100 +12,20 @@
         </div>
     </div>
 
-    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
-       aria-controls="collapseExample">
-        Добавить товар
-    </a>
-
-    <div class="collapse <#if item??>show</#if>" id="collapseExample">
-        <div class="form-group mt-3">
-            <form method="post" enctype="multipart/form-data">
-                <div class="form-group mt-3">
-                    <#--                    <input type="text" class="form-control ${(nameError??)?string('is-invalid', '')}"-->
-                    <#--                           value="<#if item??>${item.name}</#if>" name="name" placeholder="Наименование">-->
-                    <#--                    <#if nameError??>-->
-                    <#--                        <div class="invalid-feedback">-->
-                    <#--                            ${nameError}-->
-                    <#--                        </div>-->
-                    <#--                    </#if>-->
-
-
-                    <input type="text" class="form-control" name="name" placeholder="Наименование"/>
-                </div>
-
-                <div class="form-group">
-
-                    <select name="category" class="form-control" required>
-                        <#list categories! as category>
-                            <option value="${category.id}">${category.name}</option>
-                        </#list>
-                    </select>
-
-                    <#--                    <input type="number" class="form-control" name="category_id" placeholder="Категория"/>-->
-
-                </div>
-
-                <div class="form-group">
-                    <#--                                        <input type="text" class="form-control ${(descriptionError??)?string('is-invalid', '')}"-->
-                    <#--                                               value="<#if item??>${item.description}</#if>" name="description" placeholder="Описание">-->
-                    <#--                                        <#if descriptionError??>-->
-                    <#--                                            <div class="invalid-feedback">-->
-                    <#--                                                ${descriptionError}-->
-                    <#--                                            </div>-->
-                    <#--                                        </#if>-->
-
-
-                    <input type="text" class="form-control" name="description" placeholder="Описание">
-                </div>
-
-                <div class="form-group">
-                    <#--                                        <input type="number" class="form-control ${(priceError??)?string('is-invalid', '')}"-->
-                    <#--                                               value="<#if item??>${item.price}</#if>" name="price" placeholder="Цена">-->
-                    <#--                                        <#if priceError??>-->
-                    <#--                                            <div class="invalid-feedback">-->
-                    <#--                                                ${priceError}-->
-                    <#--                                            </div>-->
-                    <#--                                        </#if>-->
-
-                    <input type="number" class="form-control" name="price" placeholder="Цена">
-                </div>
-                <div class="form-group">
-                    <div class="custom-file">
-
-                        <#--                        <input type="file ${(imageError??)?string('is-invalid', '')}"-->
-                        <#--                               value="<#if item??>${item.image}</#if>" name="image" id="customFile">-->
-                        <#--                        <label class="custom-file-label" for="customFile">Выберите файл</label>-->
-                        <#--                        <#if imageError??>-->
-                        <#--                            <div class="invalid-feedback">-->
-                        <#--                                ${imageError}-->
-                        <#--                            </div>-->
-                        <#--                        </#if>-->
-
-
-                        <input type="file" name="image" id="customFile">
-                        <label class="custom-file-label" for="customFile">Выберите файл</label>
-                    </div>
-                </div>
-                <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Добавить</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
     <h5>Каталог</h5>
 
     <#list items as item>
         <div class="row my-5">
             <div class="col">
                 <h5>${item.name}</h5>
-                <div>${"Категория: " + item.category_id.name}</div>
+                <div>${"Категория: " + item.category.name}</div>
                 <div>${"Описание: " + item.description}</div>
                 <div class="card-footer text-muted">
                     ${item.price + " руб."}
                 </div>
+                <a href="/items/edit/${item.id}">Редактировать</a>
+                &nbsp
+                <a href="/items/delete/${item.id}">Удалить</a>
             </div>
             <div class="col">
                 <div class="card" style="width: 18rem;">

@@ -22,7 +22,7 @@ public class ItemInputParams {
     @NotEmpty(message = "Введите описание")
     private String description;
 
-    @Min(value = 0, message = "Цена не является числом или меньше 0")
+    @Min(value = 0, message = "Цена должна быть больше 0")
     private int price;
 
     private User author;
