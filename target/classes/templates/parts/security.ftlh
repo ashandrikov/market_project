@@ -7,10 +7,12 @@ known = Session.SPRING_SECURITY_CONTEXT??
     user = Session.SPRING_SECURITY_CONTEXT.authentication.principal
     name = user.getUsername()
     isAdmin = user.isAdmin()
+        role = user.getRole()
     >
 <#else>
     <#assign
     name = "unknown"
     isAdmin = false
+        role = "unknown"
     >
 </#if>

@@ -26,15 +26,9 @@ public class Item {
     @Column(name = "price")
     private int price;
 
-    @ManyToOne(fetch = FetchType.EAGER) @JoinColumn(name = "user_id")
-    private User author;
-
     @JsonIgnore
     @Lob
     @Column(name = "image")
     private String image;
 
-    public String getAuthorName(){
-        return author != null ? author.getUsername() : "<none>";
-    }
 }

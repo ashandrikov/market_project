@@ -37,11 +37,11 @@ class ItemTest {
         item.setName(file.getName());
 
         User testUser = new User();
-        testUser.setId((long) 1);
+        testUser.setId(1);
         testUser.setUsername("test");
         testUser.setPassword("test");
-        testUser.setActive(true);
-        testUser.setRoles(Collections.singleton(Role.USER));
+//        testUser.setActive(true);
+//        testUser.setRoles(Collections.singleton(Role.USER));
 //        testUser.getRoles().clear();
 //        testUser.getRoles().add(Role.ADMIN);
 //                .add(Role.valueOf("USER"));
@@ -56,7 +56,6 @@ class ItemTest {
         item.setName("fgh");
         item.setPrice(1000);
         item.setDescription("description");
-        item.setAuthor(testUser);
 
         Item savedItem = itemRepository.save(item);
         Item existItem = entityManager.find(Item.class, savedItem.getId());

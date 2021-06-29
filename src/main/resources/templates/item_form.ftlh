@@ -68,7 +68,5 @@
     <#else> <span>No image</span>
     </#if> </#if>
 
-<#--    <#if !item?? || !item.image??>required</#if>-->
-
 </@c.page>
 

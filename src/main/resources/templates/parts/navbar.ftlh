@@ -21,22 +21,20 @@
                 <a class="nav-link" href="/orders">Заказы</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/profile">Профиль</a>
+                <a class="nav-link" href="/account">Профиль</a>
             </li>
+            <#if isAdmin>
             <li class="nav-item">
                 <a class="nav-link" href="/api/items">API</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/add">Добавить</a>
             </li>
-
+            </#if>
         </ul>
 
-        <#if isAdmin>
-            <div class="navbar-text mr-3">Admin</div>
-        <#else>
-            <div class="navbar-text mr-3">User</div>
-        </#if>
+        <div class="navbar-text mr-3">${name}</div>
+        <div class="navbar-text mr-3">[${role}]</div>
 
         <@l.logout />
     </div>

@@ -8,6 +8,7 @@ import com.shandrikov.market.market_project.repos.CategoryRepository;
 import com.shandrikov.market.market_project.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,16 +40,6 @@ public class ItemController {
         return "main";
     }
 
-    @GetMapping("/cart")
-    public String cart() {
-        return "cart";
-    }
-
-    @GetMapping("/profile")
-    public String profile() {
-        return "profile";
-    }
-
     @GetMapping("/orders")
     public String orders() {
         return "orders";
@@ -60,6 +51,7 @@ public class ItemController {
         return "main";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/items/new")
     public String showItemNewForm(Model model) {
 
@@ -68,12 +60,14 @@ public class ItemController {
         return "item_form";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/add")
     public String add() {
 
         return "additemcategory";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/items/edit/{id}")
     public String showEditItemForm(@PathVariable("id") Integer id, Model model) {
         Item item = itemService.getItem(id);
@@ -126,7 +120,6 @@ public class ItemController {
         item.setCategory(formParams.getCategory());
         item.setDescription(formParams.getDescription());
         item.setPrice(formParams.getPrice());
-        item.setAuthor(user);
 
         MultipartFile file = formParams.getImage();
         if (file != null && !file.getOriginalFilename().isEmpty()) {

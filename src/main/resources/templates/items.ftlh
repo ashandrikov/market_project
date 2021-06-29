@@ -1,3 +1,4 @@
+<#include "parts/security.ftlh">
 <#import "parts/common.ftlh" as c>
 
 <@c.page>
@@ -23,9 +24,12 @@
                 <div class="card-footer text-muted">
                     ${item.price + " руб."}
                 </div>
+
+                <#if isAdmin>
                 <a href="/items/edit/${item.id}">Редактировать</a>
                 &nbsp
                 <a href="/items/delete/${item.id}">Удалить</a>
+                </#if>
             </div>
             <div class="col">
                 <div class="card" style="width: 18rem;">
@@ -42,8 +46,3 @@
     </#list>
 
 </@c.page>
-
-<#--    Проверка на админа, шаблон-->
-<#--    <#if isAdmin>-->
-<#--    <#else>-->
-<#--    </#if>-->

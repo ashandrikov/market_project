@@ -3,8 +3,7 @@
 <@c.page>
 
     <div class="form-row">
-        <h5>Cart</h5>
+        <h5>Shopping Cart</h5>
     </div>
-
 
 </@c.page>
