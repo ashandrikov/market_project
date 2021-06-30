@@ -8,6 +8,7 @@ import com.shandrikov.market.market_project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,9 +28,8 @@ public class ShoppingCartController {
     @GetMapping("/cart")
     public String showShoppingCart(Model model, @AuthenticationPrincipal Authentication authentication){
 
+        authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.getCurrentlyLoggedInUser(authentication);
-//        Null pointer Exception here!
-//        System.out.println(user.getUsername());
         List<CartItem> cartItems = cartService.listCartItems(user);
 
         model.addAttribute("cartItems", cartItems);

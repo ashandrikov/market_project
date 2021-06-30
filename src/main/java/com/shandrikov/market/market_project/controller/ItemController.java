@@ -99,7 +99,7 @@ public class ItemController {
     }
 
     @PostMapping("/items/save")
-    public String add(@AuthenticationPrincipal User user, @Valid ItemInputParams formParams,
+    public String add(@Valid ItemInputParams formParams,
                       BindingResult bindingResult, Model model) throws IOException {
 
 
