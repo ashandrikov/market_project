@@ -3,7 +3,7 @@
 <@c.page>
 
     <div class="form-row">
-        <h5>Orders</h5>
+        <h5>Заказы</h5>
     </div>
 
 </@c.page>

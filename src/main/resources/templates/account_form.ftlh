@@ -2,6 +2,7 @@
 
 <@c.page>
     <h5>Редактировать профиль</h5>
+    ${message!}
 
     <form action="/account/update" method="post" style="max-width: 600px; margin-top: 50px;">
 
@@ -16,6 +17,7 @@
         </div>
 
         <input type="hidden" value="${_csrf.token}" name="_csrf">
+
         <div class="form-group mt-3">
             <button type="submit" class="btn btn-primary">Сохранить</button>
         </div>

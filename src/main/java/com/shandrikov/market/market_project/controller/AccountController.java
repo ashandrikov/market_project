@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -23,18 +24,18 @@ public class AccountController {
         String username = loggedUser.getUsername();
         User user = userRepo.getUserByUsername(username);
         model.addAttribute("user", user);
-        return "account_form";
+        return "account_info";
     }
 
-    @PostMapping("/account/update")
-    public String saveDetailsString(User user, RedirectAttributes redirectAttributes,
-            @AuthenticationPrincipal MyUserDetails loggedUser){
-
-        loggedUser.setUsername(user.getUsername());
-        loggedUser.setPassword(user.getPassword());
-
-        redirectAttributes.addFlashAttribute("message", "Данные вашего аккаунта обновлены");
-        return "redirect:/account_form";
-    }
+//    @RequestMapping("/account/update")
+//    public String saveDetailsString(User user, RedirectAttributes redirectAttributes,
+//            @AuthenticationPrincipal MyUserDetails loggedUser){
+//
+//        loggedUser.setUsername(user.getUsername());
+//        loggedUser.setPassword(user.getPassword());
+//
+//        redirectAttributes.addFlashAttribute("message", "Данные вашего аккаунта обновлены");
+//        return "redirect:/account";
+//    }
 
 }

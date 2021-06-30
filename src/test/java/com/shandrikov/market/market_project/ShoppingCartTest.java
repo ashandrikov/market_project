@@ -30,8 +30,8 @@ public class ShoppingCartTest {
 
     @Test
     public void testAddOneCartItem(){
-        Item item = entityManager.find(Item.class, 2);
-        User user = entityManager.find(User.class, 1);
+        Item item = entityManager.find(Item.class, 3);
+        User user = entityManager.find(User.class, 5);
 
         CartItem newItem = new CartItem();
         newItem.setItem(item);
@@ -42,14 +42,14 @@ public class ShoppingCartTest {
         assertThat(savedCartItem.getId() > 0);
 
     }
+
     @Test
     public void testGetCartItemsByCustomer(){
         User user = new User();
-        user.setId(1);
+        user.setId(5);
 
         List<CartItem> cartItems = cartRepo.findByUser(user);
         assertEquals(1, cartItems.size());
-
 
     }
 

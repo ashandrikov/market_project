@@ -3,6 +3,8 @@ package com.shandrikov.market.market_project.controller;
 import com.shandrikov.market.market_project.entity.CartItem;
 import com.shandrikov.market.market_project.entity.User;
 import com.shandrikov.market.market_project.service.ShoppingCartService;
+import com.shandrikov.market.market_project.service.UserDetailsServiceImpl;
+import com.shandrikov.market.market_project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.validation.constraints.Null;
 import java.util.List;
 
 @Controller
@@ -18,16 +21,19 @@ public class ShoppingCartController {
     @Autowired
     private ShoppingCartService cartService;
 
-//    @Autowired
-//    private UserService userService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/cart")
     public String showShoppingCart(Model model, @AuthenticationPrincipal Authentication authentication){
-//        if (authentication == null) return "main";
-        User user = (User) authentication.getPrincipal();
+
+        User user = userService.getCurrentlyLoggedInUser(authentication);
+//        Null pointer Exception here!
+//        System.out.println(user.getUsername());
         List<CartItem> cartItems = cartService.listCartItems(user);
 
         model.addAttribute("cartItems", cartItems);
+        model.addAttribute("pageTitle", "Shopping Cart");
 
         return "shopping_cart";
     }

@@ -89,4 +89,8 @@ public class MyUserDetails implements UserDetails, GrantedAuthority {
     public void setPassword (String password){
         this.user.setPassword(password);
     }
+
+    public User getUser(){
+        return this.user;
+    }
 }
