@@ -1,4 +1,5 @@
 <#import "parts/common.ftlh" as c>
+<#import "parts/quantity_control.ftlh" as q>
 
 <@c.page>
 

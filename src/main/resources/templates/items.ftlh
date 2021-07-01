@@ -1,5 +1,6 @@
 <#include "parts/security.ftlh">
 <#import "parts/common.ftlh" as c>
+<#import "parts/quantity_control.ftlh" as q>
 
 <@c.page>
 
@@ -24,6 +25,13 @@
                 <div class="card-footer text-muted">
                     ${item.price + " руб."}
                 </div>
+
+                <#if !isAdmin>
+                <div class="mt-4">
+                    <@q.quantity_control quantityValue="1" itemId=item.id/>
+                </div>
+                <div class="mt-2"><input type="button" id="buttonAddtoCart" value="В корзину" class="btn btn-primary"></div>
+                </#if>
 
                 <#if isAdmin>
                 <a href="/items/edit/${item.id}">Редактировать</a>

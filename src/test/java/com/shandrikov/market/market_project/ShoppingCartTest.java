@@ -30,13 +30,13 @@ public class ShoppingCartTest {
 
     @Test
     public void testAddOneCartItem(){
-        Item item = entityManager.find(Item.class, 3);
-        User user = entityManager.find(User.class, 5);
+        Item item = entityManager.find(Item.class, 2);
+        User user = entityManager.find(User.class, 9);
 
         CartItem newItem = new CartItem();
         newItem.setItem(item);
         newItem.setUser(user);
-        newItem.setQuantity(1);
+        newItem.setQuantity(2);
 
         CartItem savedCartItem = cartRepo.save(newItem);
         assertThat(savedCartItem.getId() > 0);
@@ -51,6 +51,58 @@ public class ShoppingCartTest {
         List<CartItem> cartItems = cartRepo.findByUser(user);
         assertEquals(1, cartItems.size());
 
+    }
+
+    @Test
+    public void testFindByUserAndItem(){
+        Integer userId = 9;
+        Integer itemId = 2;
+
+        User user = new User();
+        user.setId(userId);
+
+        Item item = new Item();
+        item.setId(itemId);
+
+        CartItem cartItem = cartRepo.findByUserAndItem(user, item);
+        assertThat(cartItem).isNotNull();
+    }
+
+    @Test
+    public void testUpdateQuantity(){
+        Integer userId = 9;
+        Integer itemId = 2;
+        Integer quantity = 4;
+
+        User user = new User();
+        user.setId(userId);
+
+        Item item = new Item();
+        item.setId(itemId);
+
+        cartRepo.updateQuantity(quantity, userId, itemId);
+
+        CartItem cartItem = cartRepo.findByUserAndItem(user, item);
+
+        assertThat(cartItem.getQuantity()).isEqualTo(4);
+    }
+
+    @Test
+    public void testDeleteByUserAndItem(){
+        Integer userId = 9;
+        Integer itemId = 2;
+
+        User user = new User();
+        user.setId(userId);
+
+        Item item = new Item();
+        item.setId(itemId);
+
+        cartRepo.deleteByUserAndItem(userId,itemId);
+
+        CartItem cartItem = cartRepo.findByUserAndItem(user, item);
+
+        assertThat(cartItem).isNull();
     }
 
 }

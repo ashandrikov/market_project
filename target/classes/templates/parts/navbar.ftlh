@@ -13,9 +13,12 @@
             <li class="nav-item active">
                 <a class="nav-link" href="/items">Товары</a>
             </li>
+
+            <#if !isAdmin>
             <li class="nav-item">
                 <a class="nav-link" href="/cart">Корзина</a>
             </li>
+            </#if>
 
             <li class="nav-item">
                 <a class="nav-link" href="/orders">Заказы</a>

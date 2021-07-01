@@ -12,7 +12,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.Null;
 import java.util.List;
 
@@ -28,13 +31,30 @@ public class ShoppingCartController {
     @GetMapping("/cart")
     public String showShoppingCart(Model model, @AuthenticationPrincipal Authentication authentication){
 
-        authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.getCurrentlyLoggedInUser(authentication);
+//        authentication = SecurityContextHolder.getContext().getAuthentication();
+//        User user = userService.getCurrentlyLoggedInUser(authentication);
+        User user = getAuthenticatedUser(authentication);
         List<CartItem> cartItems = cartService.listCartItems(user);
 
         model.addAttribute("cartItems", cartItems);
         model.addAttribute("pageTitle", "Shopping Cart");
 
         return "shopping_cart";
+    }
+
+    @PostMapping("/cart/add/{itemId}/{quantity}")
+    public String addItemToCart(@PathVariable("itemId") Integer itemId,
+                                @PathVariable("quantity") Integer quantity,
+                                HttpServletRequest request,
+                                @AuthenticationPrincipal Authentication authentication){
+        User user = getAuthenticatedUser(authentication);
+        Integer updatedQuantity = cartService.addItem(itemId, quantity, user);
+        return updatedQuantity + " товара(-ов) было добавлено в козину";
+    }
+
+    private User getAuthenticatedUser(@AuthenticationPrincipal Authentication authentication){
+        authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.getCurrentlyLoggedInUser(authentication);
+        return user;
     }
 }

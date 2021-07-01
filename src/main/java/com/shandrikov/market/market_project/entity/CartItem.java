@@ -1,6 +1,7 @@
 package com.shandrikov.market.market_project.entity;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 
