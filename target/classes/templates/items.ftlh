@@ -26,11 +26,17 @@
                     ${item.price + " руб."}
                 </div>
 
+                <script type="text/javascript">
+                    itemId = ${item.id};
+                    var csrfHeaderName = "${_csrf.headerName}";
+                    var csrfValue = "${_csrf.token}"
+                </script>
+
                 <#if !isAdmin>
                 <div class="mt-4">
                     <@q.quantity_control quantityValue="1" itemId=item.id/>
                 </div>
-                <div class="mt-2"><input type="button" id="buttonAddtoCart" value="В корзину" class="btn btn-primary"></div>
+                <div class="mt-2"><input type="button" id="buttonAddToCart" value="В корзину" class="btn btn-primary"></div>
                 </#if>
 
                 <#if isAdmin>
@@ -47,6 +53,7 @@
                     </#if>
                 </div>
             </div>
+
         </div>
 
     <#else>

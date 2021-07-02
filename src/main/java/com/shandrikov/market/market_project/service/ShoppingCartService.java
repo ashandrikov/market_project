@@ -19,7 +19,7 @@ public class ShoppingCartService {
         return cartRepo.findByUser(user);
     }
 
-    public Integer addItem(Integer itemId, Integer quantity, User user){
+    public Integer addItem(Integer itemId, Integer quantity, User user) throws ShoppingCartException {
         Integer updatedQuantity = quantity;
         Item item = new Item();
         item.setId(itemId);
@@ -28,7 +28,10 @@ public class ShoppingCartService {
 
         if (cartItem != null){
             updatedQuantity = cartItem.getQuantity() + quantity;
-            cartItem.setQuantity(updatedQuantity);
+            if (updatedQuantity > 5){
+                throw new ShoppingCartException("Невозможно добавить больше" + quantity + " товаров потому что" +
+                        "в корзине уже " + cartItem.getQuantity() + " штук. Максимум 5.");
+            }
         } else {
             cartItem = new CartItem();
             cartItem.setUser(user);

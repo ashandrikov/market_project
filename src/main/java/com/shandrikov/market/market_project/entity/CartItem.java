@@ -22,4 +22,9 @@ public class CartItem {
     private User user;
 
     private int quantity;
+
+    @Transient
+    public Integer getSubtotal(){
+        return item.getPrice() * quantity;
+    }
 }

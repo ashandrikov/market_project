@@ -1,7 +1,7 @@
 function showModalDialog(title, message) {
     $("#modalTitle").text(title);
     $("#modalBody").text(message);
-    $("#modalDialog").modal;
+    $("#modalDialog").modal();
 }
 
 function showErrorModal(message) {

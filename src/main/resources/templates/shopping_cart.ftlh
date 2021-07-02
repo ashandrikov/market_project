@@ -23,10 +23,9 @@
 
             <div class="col-4">
                 <div><h6>${cartItem.item.name}</h6></div>
-<#--                <#include "parts/quantity_control.ftlh">-->
-                <div><input type="number" value="${cartItem.quantity}" class="form-control"></div>
+                <div class="mt-4"><@q.quantity_control quantityValue="${cartItem.quantity}" itemId=cartItem.item.id/></div>
                 <div><span>x </span><span>${cartItem.item.price} ₽</span></div>
-                <div><span>= </span><span class="h5">[Subtotal]</span></div>
+                <div><span>= </span><span class="h5">${cartItem.subtotal} ₽</span></div>
             </div>
 
         </div>
@@ -43,7 +42,7 @@
             <span class="h4">Всего:</span>
         </div>
         <div class="mt-2">
-            <span class="h3">[Total amount]</span>
+            <span class="h3">${estimatedTotal!} ₽</span>
         </div>
         <div class="mt-2">
             <button class="btn btn-danger p-1 mt-2">Выйти</button>
