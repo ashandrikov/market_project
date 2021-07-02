@@ -1,7 +1,5 @@
-package com.shandrikov.market.market_project.controller;
+package com.shandrikov.market.market_project.category;
 
-import com.shandrikov.market.market_project.entity.Category;
-import com.shandrikov.market.market_project.repos.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

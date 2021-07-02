@@ -1,7 +1,7 @@
 package com.shandrikov.market.market_project;
 
-import com.shandrikov.market.market_project.entity.Category;
-import com.shandrikov.market.market_project.repos.CategoryRepository;
+import com.shandrikov.market.market_project.category.Category;
+import com.shandrikov.market.market_project.category.CategoryRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;

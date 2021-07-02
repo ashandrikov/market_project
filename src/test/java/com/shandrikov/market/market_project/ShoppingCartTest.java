@@ -1,12 +1,11 @@
 package com.shandrikov.market.market_project;
 
-import com.shandrikov.market.market_project.entity.CartItem;
-import com.shandrikov.market.market_project.entity.Item;
-import com.shandrikov.market.market_project.entity.User;
-import com.shandrikov.market.market_project.repos.CartItemRepository;
+import com.shandrikov.market.market_project.shopping_cart.CartItem;
+import com.shandrikov.market.market_project.item.Item;
+import com.shandrikov.market.market_project.user.User;
+import com.shandrikov.market.market_project.shopping_cart.CartItemRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;

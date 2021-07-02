@@ -1,8 +1,7 @@
-package com.shandrikov.market.market_project.repos;
+package com.shandrikov.market.market_project.shopping_cart;
 
-import com.shandrikov.market.market_project.entity.CartItem;
-import com.shandrikov.market.market_project.entity.Item;
-import com.shandrikov.market.market_project.entity.User;
+import com.shandrikov.market.market_project.item.Item;
+import com.shandrikov.market.market_project.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

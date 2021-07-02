@@ -1,16 +1,10 @@
-package com.shandrikov.market.market_project.controller;
+package com.shandrikov.market.market_project.user;
 
-import com.shandrikov.market.market_project.entity.MyUserDetails;
-import com.shandrikov.market.market_project.entity.User;
-import com.shandrikov.market.market_project.repos.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class AccountController {

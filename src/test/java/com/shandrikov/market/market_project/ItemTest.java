@@ -1,22 +1,18 @@
 package com.shandrikov.market.market_project;
 
-import com.shandrikov.market.market_project.entity.Item;
-import com.shandrikov.market.market_project.entity.Role;
-import com.shandrikov.market.market_project.entity.User;
-import com.shandrikov.market.market_project.repos.ItemRepository;
+import com.shandrikov.market.market_project.item.Item;
+import com.shandrikov.market.market_project.user.User;
+import com.shandrikov.market.market_project.item.ItemRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Base64;
-import java.util.Collections;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)

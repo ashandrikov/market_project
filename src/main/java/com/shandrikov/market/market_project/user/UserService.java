@@ -1,8 +1,5 @@
-package com.shandrikov.market.market_project.service;
+package com.shandrikov.market.market_project.user;
 
-import com.shandrikov.market.market_project.entity.MyUserDetails;
-import com.shandrikov.market.market_project.entity.User;
-import com.shandrikov.market.market_project.repos.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;

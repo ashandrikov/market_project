@@ -1,6 +1,6 @@
 package com.shandrikov.market.market_project.config;
 
-import com.shandrikov.market.market_project.service.UserDetailsServiceImpl;
+import com.shandrikov.market.market_project.user.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

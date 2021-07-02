@@ -1,7 +1,8 @@
-package com.shandrikov.market.market_project.entity;
+package com.shandrikov.market.market_project.shopping_cart;
 
+import com.shandrikov.market.market_project.item.Item;
+import com.shandrikov.market.market_project.user.User;
 import lombok.Data;
-import lombok.ToString;
 
 import javax.persistence.*;
 

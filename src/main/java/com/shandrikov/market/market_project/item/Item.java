@@ -1,6 +1,7 @@
-package com.shandrikov.market.market_project.entity;
+package com.shandrikov.market.market_project.item;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.shandrikov.market.market_project.category.Category;
 import lombok.Data;
 
 import javax.persistence.*;

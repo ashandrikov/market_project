@@ -1,6 +1,6 @@
-package com.shandrikov.market.market_project.service;
+package com.shandrikov.market.market_project.item;
 
-import com.shandrikov.market.market_project.entity.Item;
+import com.shandrikov.market.market_project.item.Item;
 
 import java.util.List;
 

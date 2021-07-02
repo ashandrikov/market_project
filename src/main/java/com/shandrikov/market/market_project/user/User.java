@@ -1,4 +1,4 @@
-package com.shandrikov.market.market_project.entity;
+package com.shandrikov.market.market_project.user;
 
 import lombok.Data;
 

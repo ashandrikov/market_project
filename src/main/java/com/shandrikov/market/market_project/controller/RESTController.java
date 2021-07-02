@@ -1,7 +1,7 @@
 package com.shandrikov.market.market_project.controller;
 
-import com.shandrikov.market.market_project.entity.Item;
-import com.shandrikov.market.market_project.service.ItemService;
+import com.shandrikov.market.market_project.item.Item;
+import com.shandrikov.market.market_project.item.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

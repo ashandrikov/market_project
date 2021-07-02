@@ -1,6 +1,6 @@
-package com.shandrikov.market.market_project.repos;
+package com.shandrikov.market.market_project.item;
 
-import com.shandrikov.market.market_project.entity.Item;
+import com.shandrikov.market.market_project.item.Item;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

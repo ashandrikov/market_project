@@ -1,15 +1,11 @@
-package com.shandrikov.market.market_project.controller;
+package com.shandrikov.market.market_project.item;
 
-import com.shandrikov.market.market_project.entity.Category;
-import com.shandrikov.market.market_project.entity.Item;
-import com.shandrikov.market.market_project.entity.ItemInputParams;
-import com.shandrikov.market.market_project.entity.User;
-import com.shandrikov.market.market_project.repos.CategoryRepository;
-import com.shandrikov.market.market_project.service.ItemService;
+import com.shandrikov.market.market_project.controller.ControllerUtils;
+import com.shandrikov.market.market_project.category.Category;
+import com.shandrikov.market.market_project.category.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;

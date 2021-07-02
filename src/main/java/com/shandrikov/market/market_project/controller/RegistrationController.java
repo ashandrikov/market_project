@@ -1,7 +1,7 @@
 package com.shandrikov.market.market_project.controller;
 
-import com.shandrikov.market.market_project.entity.User;
-import com.shandrikov.market.market_project.repos.UserRepository;
+import com.shandrikov.market.market_project.user.User;
+import com.shandrikov.market.market_project.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

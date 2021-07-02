@@ -1,6 +1,5 @@
-package com.shandrikov.market.market_project.repos;
+package com.shandrikov.market.market_project.user;
 
-import com.shandrikov.market.market_project.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

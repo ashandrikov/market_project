@@ -1,6 +1,8 @@
-package com.shandrikov.market.market_project.entity;
+package com.shandrikov.market.market_project.item;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.shandrikov.market.market_project.category.Category;
+import com.shandrikov.market.market_project.user.User;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.web.multipart.MultipartFile;

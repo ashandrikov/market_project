@@ -1,7 +1,8 @@
-package com.shandrikov.market.market_project.service;
+package com.shandrikov.market.market_project.item;
 
-import com.shandrikov.market.market_project.repos.ItemRepository;
-import com.shandrikov.market.market_project.entity.Item;
+import com.shandrikov.market.market_project.item.ItemRepository;
+import com.shandrikov.market.market_project.item.Item;
+import com.shandrikov.market.market_project.item.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
