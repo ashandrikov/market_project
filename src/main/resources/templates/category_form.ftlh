@@ -1,6 +1,8 @@
 <#import "parts/common.ftlh" as c>
 
 <@c.page>
+<div class="container mt-5">
+
     <#if category??> <h5>Редактировать категорию</h5>
     <#else> <h5>Новая категория</h5>
     </#if>
@@ -20,6 +22,6 @@
             </div>
         </div>
     </form>
-
+</div>
 </@c.page>
 

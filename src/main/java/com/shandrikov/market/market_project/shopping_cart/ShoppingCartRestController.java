@@ -1,5 +1,6 @@
 package com.shandrikov.market.market_project.shopping_cart;
 
+import com.shandrikov.market.market_project.controller.ControllerUtils;
 import com.shandrikov.market.market_project.user.User;
 import com.shandrikov.market.market_project.shopping_cart.ShoppingCartException;
 import com.shandrikov.market.market_project.shopping_cart.ShoppingCartService;
@@ -23,33 +24,77 @@ public class ShoppingCartRestController {
     @Autowired
     private UserService userService;
 
+//    @PostMapping("/cart/add/{itemId}/{quantity}")
+//    public String addItemToCart(@PathVariable("itemId") Integer itemId,
+//                                @PathVariable("quantity") Integer quantity,
+//                                HttpServletRequest request,
+//                                @AuthenticationPrincipal Authentication authentication){
+//
+//
+//        try {
+//            authentication = SecurityContextHolder.getContext().getAuthentication();
+//            User user = userService.getCurrentlyLoggedInUser(authentication);
+//
+////            User user = getAuthenticatedUser(authentication);
+//            Integer updatedQuantity = cartService.addItem(itemId, quantity, user);
+//            return updatedQuantity + " товара(-ов) было добавлено в козину.";
+//        } catch (ShoppingCartException ex){
+//            return ex.getMessage();
+//        } catch (Exception e) {
+//            return "Авторизируйтесь для того чтобы добавить товар в корзину.";
+//        }
+//    }
+
     @PostMapping("/cart/add/{itemId}/{quantity}")
     public String addItemToCart(@PathVariable("itemId") Integer itemId,
                                 @PathVariable("quantity") Integer quantity,
-                                HttpServletRequest request,
-                                @AuthenticationPrincipal Authentication authentication){
+                                HttpServletRequest request) throws Exception {
 
-
-        try {
-            authentication = SecurityContextHolder.getContext().getAuthentication();
-            User user = userService.getCurrentlyLoggedInUser(authentication);
-
-//            User user = getAuthenticatedUser(authentication);
-            Integer updatedQuantity = cartService.addItem(itemId, quantity, user);
+        try {User user = getAuthenticatedUser(request);
+        Integer updatedQuantity = cartService.addItem(itemId, quantity, user);
             return updatedQuantity + " товара(-ов) было добавлено в козину.";
-        } catch (ShoppingCartException ex){
-            return ex.getMessage();
-        } catch (Exception e) {
+        }catch (Exception e) {
             return "Авторизируйтесь для того чтобы добавить товар в корзину.";
         }
+
     }
 
-//    private User getAuthenticatedUser(@AuthenticationPrincipal Authentication authentication) throws Exception {
-//        authentication = SecurityContextHolder.getContext().getAuthentication();
-//        User user = userService.getCurrentlyLoggedInUser(authentication);
-//        if (user == null){
-//            throw new Exception();
+//    @PostMapping("/cart/update/{itemId}/{quantity}")
+//    public String updateQuantity(@PathVariable("itemId") Integer itemId,
+//                                @PathVariable("quantity") Integer quantity,
+//                                HttpServletRequest request,
+//                                @AuthenticationPrincipal Authentication authentication){
+//        try {
+//            authentication = SecurityContextHolder.getContext().getAuthentication();
+//            User user = userService.getCurrentlyLoggedInUser(authentication);
+//            int subtotal = cartService.updateQuantity(itemId, quantity, user);
+////            User user = getAuthenticatedUser(authentication);
+//            return String.valueOf(subtotal);
+//        } catch (Exception ex){
+//            return ex.getMessage();
 //        }
-//        return user;
+//
 //    }
+
+    @PostMapping("/cart/update/{itemId}/{quantity}")
+    public String updateQuantity(@PathVariable("itemId") Integer itemId,
+                                 @PathVariable("quantity") Integer quantity,
+                                 HttpServletRequest request){
+        try {
+            User user = getAuthenticatedUser(request);
+            int subtotal = cartService.updateQuantity(itemId, quantity, user);
+            return String.valueOf(subtotal);
+        } catch (Exception ex){
+            return ex.getMessage();
+        }
+
+    }
+
+    private User getAuthenticatedUser(HttpServletRequest request) throws Exception {
+        String username = ControllerUtils.getUsernameOfAuthenticatedUser(request);
+        if (username == null) {
+            throw new Exception("No authenticated customer");
+        }
+        return userService.getUserByUsername(username);
+    }
 }

@@ -29,7 +29,7 @@ public class ShoppingCartTest {
 
     @Test
     public void testAddOneCartItem(){
-        Item item = entityManager.find(Item.class, 2);
+        Item item = entityManager.find(Item.class, 1);
         User user = entityManager.find(User.class, 9);
 
         CartItem newItem = new CartItem();
@@ -43,13 +43,14 @@ public class ShoppingCartTest {
     }
 
     @Test
-    public void testGetCartItemsByCustomer(){
+    public void testFindByUser(){
+
         User user = new User();
-        user.setId(5);
+        user.setId(9);
 
-        List<CartItem> cartItems = cartRepo.findByUser(user);
-        assertEquals(1, cartItems.size());
+        List<CartItem> listItems = cartRepo.findByUser(user);
 
+        assertThat(listItems.size()).isEqualTo(2);
     }
 
     @Test
@@ -71,7 +72,7 @@ public class ShoppingCartTest {
     public void testUpdateQuantity(){
         Integer userId = 9;
         Integer itemId = 2;
-        Integer quantity = 4;
+        Integer quantity = 3;
 
         User user = new User();
         user.setId(userId);
@@ -83,7 +84,7 @@ public class ShoppingCartTest {
 
         CartItem cartItem = cartRepo.findByUserAndItem(user, item);
 
-        assertThat(cartItem.getQuantity()).isEqualTo(4);
+        assertThat(cartItem.getQuantity()).isEqualTo(3);
     }
 
     @Test

@@ -1,6 +1,8 @@
 <#import "parts/common.ftlh" as c>
 
 <@c.page>
+<div class="container mt-5">
+
     <#if item??> <h5>Редактировать товар</h5>
     <#else> <h5>Новый товар</h5>
     </#if>
@@ -67,6 +69,6 @@
         </div>
     <#else> <span>No image</span>
     </#if> </#if>
-
+</div>
 </@c.page>
 

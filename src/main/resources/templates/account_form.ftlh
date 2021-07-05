@@ -1,6 +1,7 @@
 <#import "parts/common.ftlh" as c>
 
 <@c.page>
+<div class="container mt-5">
     <h5>Редактировать профиль</h5>
     ${message!}
 
@@ -22,5 +23,5 @@
             <button type="submit" class="btn btn-primary">Сохранить</button>
         </div>
     </form>
-
+</div>
 </@c.page>

@@ -1,6 +1,8 @@
 <#import "parts/common.ftlh" as c>
 
 <@c.page>
+    <div class="container mt-5">
+
     <h5>Снаряжение</h5>
     <div>Профессиональная экипировка</div>
 
@@ -31,6 +33,7 @@
             </div>
         </div>
     </div>
+</div>
 </@c.page>
 
 

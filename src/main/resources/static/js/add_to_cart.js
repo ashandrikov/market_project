@@ -8,8 +8,6 @@ function addToCart(){
     quantity = $("#quantity" + itemId).val();
     url = "/cart/add/" + itemId + "/" + quantity;
 
-    alert(url);
-
     $.ajax({
         type: "POST",
         url: url,

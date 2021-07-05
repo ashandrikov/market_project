@@ -1,5 +1,4 @@
 <#macro quantity_control (quantityValue, itemId)>
-<#--    <#assign quantity= "quantity">-->
 
 <nav>
     <ul class="pagination">

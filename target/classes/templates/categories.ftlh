@@ -1,6 +1,8 @@
 <#import "parts/common.ftlh" as c>
 
 <@c.page>
+<div class="container mt-5">
+
     <h5>Категории</h5>
 
     <table class="table table-bordered">
@@ -21,6 +23,6 @@
         </#list>
         </tbody>
     </table>
-
+</div>
 </@c.page>
 

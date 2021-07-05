@@ -2,15 +2,15 @@ package com.shandrikov.market.market_project.shopping_cart;
 
 import com.shandrikov.market.market_project.item.Item;
 import com.shandrikov.market.market_project.user.User;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface CartItemRepository extends JpaRepository<CartItem, Integer> {
+public interface CartItemRepository extends CrudRepository<CartItem, Integer> {
 
     public List<CartItem> findByUser(User user);
 
