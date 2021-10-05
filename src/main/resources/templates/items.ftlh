@@ -39,7 +39,7 @@
                 <div class="mt-4">
                     <@q.quantity_control quantityValue="1" itemId=item.id/>
                 </div>
-                <div class="mt-2"><input type="button" id="buttonAddToCart${item.id}" value="В корзину" class="btn btn-primary"></div>
+                <div class="mt-2"><a class="btn btn-primary buttonAddToCart" >В корзину</a></div>
                 </#if>
 
                 <#if isAdmin>
